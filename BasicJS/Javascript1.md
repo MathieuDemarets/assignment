@@ -338,4 +338,341 @@ Automatically put the text cursor into the `<input>` text field as soon as the p
 ```JavaScript
 guessField.focus();
 ```
+## Variables
+A variable is a container for a value, like a number we might use in a sum, or a string that we might use as part of a sentence.
 
+In this example pressing the button runs some code. The first line pops a box up on the screen that asks the reader to enter their name, and then stores the value in a variable. The second line displays a welcome message that includes their name, taken from the variable value and the third line displays that name on the page.
+
+```html
+<button id="button_A">Press me</button>
+<h3 id="heading_A"></h3>
+```
+
+```JavaScript
+const buttonA = document.querySelector("#button_A");
+const headingA = document.querySelector("#heading_A");
+
+buttonA.onclick = () => {
+  const name = prompt("What is your name?");
+  alert(`Hello ${name}, nice to see you!`);
+  headingA.textContent = `Welcome ${name}`;
+};
+```
+
+If we didn't have variables available, we'd have to ask the reader for their name every time we needed to use it!
+
+### Declaring a variable
+
+To use a variable, you've first got to create it — more accurately, we call this declaring the variable. To do this, we type the keyword 'let' followed by the name you want to call your variable.
+
+### Initializing a variable
+
+Once you've declared a variable, you can initialize it with a value. You do this by typing the variable name, followed by an equals sign (=), followed by the value you want to give it.
+
+Or combine them:
+
+```JavaScript
+let myDog = "Rover";
+```
+
+### Variable types
+- Numbers
+-Strings
+-Booleans
+-Arrays
+Once these arrays are defined, you can access each value by their location within the array: myNameArray[0]
+- Objects: let dog = { name: "Spot", breed: "Dalmatian" };
+
+
+### Dynamic typing
+JavaScript is a "dynamically typed language", which means that, unlike some other languages, you don't need to specify what data type a variable will contain (numbers, strings, arrays, etc.).
+
+### Constants
+As well as variables, you can declare constants. These are like variables, except that:
+
+you must initialize them when you declare them
+you can't assign them a new value after you've initialized them.
+
+Similarly, with let you can initialize a constant, and then assign it a new value (this is also called reassigning the constant):
+```JavaScript
+let count = 1;
+count = 2;
+```
+using 'const', you cannot reassign
+```JavaScript
+const count = 1;
+count = 2;
+```
+
+### Numbers and Operators
+to check the datatype of a variable:
+When string instead of number: Number()
+```JavaScript
+typeof myInt; 
+```
+To round your number to a fixed number of decimal places, use the toFixed()
+```JavaScript
+const lotsOfDecimal = 1.766584958675746364;
+lotsOfDecimal;
+const twoDecimalPlaces = lotsOfDecimal.toFixed(2);
+twoDecimalPlaces;
+```
+| Character   | Entity |
+| ---------   | ------ |
+| remainder   | `%`  |
+| exponent    | `**`  |
+
+Sometimes you'll want to repeatedly add or subtract one to or from a numeric variable value. This can be conveniently done using the increment (++) and decrement (--) operators.
+
+```JavaScript
+guessCount++;
+```
+Example from button that starts/stops a machine:
+
+```html
+<button>Start machine</button>
+<p>The machine is stopped.</p>
+```
+
+```JavaScript
+const btn = document.querySelector("button");
+const txt = document.querySelector("p");
+
+btn.addEventListener("click", updateBtn);
+
+function updateBtn() {
+  if (btn.textContent === "Start machine") {
+    btn.textContent = "Stop machine";
+    txt.textContent = "The machine has started!";
+  } else {
+    btn.textContent = "Start machine";
+    txt.textContent = "The machine is stopped.";
+  }
+}
+```
+### Handling text - strings
+Declaring a string:
+
+```JavaScript
+const string = "The revolution will not be televised.";
+console.log(string);
+```
+Inside a template literal, you can wrap JavaScript variables or expressions inside ${ }, and the result will be included in the string:
+
+```JavaScript
+const name = "Chris";
+const greeting = `Hello, ${name}`;
+console.log(greeting); // "Hello, Chris"
+```
+
+You can use the same technique to join together two variables: concatenate using ${}:
+```JavaScript
+const one = "Hello, ";
+const two = "how are you?";
+const joined = `${one}${two}`;
+console.log(joined); // "Hello, how are you?"
+```
+
+When button pressed 'hello {name}, nice to see you!' printed:
+
+```html
+<button>Press me</button>
+<div id="greeting"></div>
+```
+
+```JavaScript
+const button = document.querySelector("button");
+
+function greet() {
+  const name = prompt("What is your name?");
+  const greeting = document.querySelector("#greeting");
+  greeting.textContent = `Hello ${name}, nice to see you!`;
+}
+
+button.addEventListener("click", greet);
+```
+You can use ${} only with template literals, not normal strings. You can concatenate normal strings using the + operator:
+
+```JavaScript
+const greeting = "Hello";
+const name = "Chris";
+console.log(greeting + ", " + name); // "Hello, Chris"
+```
+
+You can include JavaScript expressions in template literals, as well as just variables, and the results will be included in the result:
+```JavaScript
+const song = "Fight the Youth";
+const score = 9;
+const highestScore = 10;
+const output = `I like the song ${song}. I gave it a score of ${
+  (score / highestScore) * 100
+}%.`;
+console.log(output); // "I like the song Fight the Youth. I gave it a score of 90%."
+```
+
+multiline strings:
+```JavaScript
+const newline = "One day you finally knew\nwhat you had to do, and began,";
+console.log(newline);
+
+/*
+One day you finally knew
+what you had to do, and began,
+*/
+```
+Including quotes in strings:
+use one of the other characters to declare the string. Or by putting a backslash just before the character: You can use the same technique to insert other special characters
+```JavaScript
+const goodQuotes1 = 'She said "I think so!"';
+const goodQuotes2 = `She said "I'm not going in there!"`;
+```
+
+### Useful string methods:
+Finding the length of a string:
+```JavaScript
+const browserType = "mozilla";
+browserType.length;
+```
+
+Retrieving a specific strinh character:
+```JavaScript
+browserType[0]
+```
+To retrieve the last character of a string:µ
+```JavaScript
+browserType[browserType.length - 1];
+```
+
+Testing if a string contains a substring:
+Often you'll want to know if a string starts or ends with a particular substring: startsWith() and endsWith() instead of includes().
+```JavaScript
+const browserType = "mozilla";
+
+if (browserType.includes("zilla")) {
+  console.log("Found zilla!");
+} else {
+  console.log("No zilla here!");
+}
+
+```
+Finding position of a substring:
+```JavaScript
+const tagline = "MDN - Resources for developers, by developers";
+console.log(tagline.indexOf("developers")); // 20
+
+```
+```JavaScript
+console.log(tagline.indexOf("x")); // -1
+
+```
+returns -1 because the character x is not present in the string.
+
+Extract a substring from a string:
+If you know that you want to extract all of the remaining characters in a string after a certain character, you don't have to include the second parameter.
+```JavaScript
+const browserType = "mozilla";
+console.log(browserType.slice(1, 4)); // "ozi"
+
+```
+
+Changing case:
+The string methods toLowerCase() and toUpperCase() take a string and convert all the characters to lower- or uppercase, respectively.
+```JavaScript
+const radData = "My NaMe Is MuD";
+console.log(radData.toLowerCase());
+console.log(radData.toUpperCase());
+```
+Updating parts of a string:
+Be aware that replace() in this form only changes the first occurrence of the substring. If you want to change all occurrences, you can use replaceAll().
+```JavaScript
+const browserType = "mozilla";
+const updated = browserType.replace("moz", "van");
+
+console.log(updated); // "vanilla"
+console.log(browserType); // "mozilla"
+```
+### Arrays
+Arrays consist of square brackets and items that are separated by commas.
+We can store various data types — strings, numbers, objects, and even other arrays.
+Finding the length of an array and accessing an element, finding the index of items works the same as with a string described above.
+
+Adding items:
+```JavaScript
+const cities = ["Manchester", "Liverpool"];
+cities.push("Cardiff");
+console.log(cities); // [ "Manchester", "Liverpool", "Cardiff" ]
+cities.push("Bradford", "Brighton");
+console.log(cities); // [ "Manchester", "Liverpool", "Cardiff", "Bradford", "Brighton" ]
+```
+The new length of the array is returned when the method call completes. If you wanted to store the new array length in a variable, you could do something like this:
+```JavaScript
+const cities = ["Manchester", "Liverpool"];
+const newLength = cities.push("Bristol");
+console.log(cities); // [ "Manchester", "Liverpool", "Bristol" ]
+console.log(newLength); // 3
+```
+To add an item to the start of the array, use unshift():
+```JavaScript
+const cities = ["Manchester", "Liverpool"];
+cities.unshift("Edinburgh");
+console.log(cities); // [ "Edinburgh", "Manchester", "Liverpool" ]
+```
+To remove the last item from the array, use pop():
+```JavaScript
+const cities = ["Manchester", "Liverpool"];
+cities.pop();
+console.log(cities); // [ "Manchester" ]
+```
+to save removed item:
+```JavaScript
+const cities = ["Manchester", "Liverpool"];
+const removedCity = cities.pop();
+console.log(removedCity); // "Liverpool"
+```
+To remove the first item from an array, use shift():
+```JavaScript
+const cities = ["Manchester", "Liverpool"];
+cities.shift();
+console.log(cities); // [ "Liverpool" ]
+```
+If you know the index of an item, you can remove it from the array using splice():
+```JavaScript
+const cities = ["Manchester", "Liverpool", "Edinburgh", "Carlisle"];
+const index = cities.indexOf("Liverpool");
+if (index !== -1) {
+  cities.splice(index, 1);
+}
+console.log(cities); // [ "Manchester", "Edinburgh", "Carlisle" ]
+
+```
+In this call to splice(), the first argument says where to start removing items, and the second argument says how many items should be removed. So you can remove more than one item:
+
+```JavaScript
+const cities = ["Manchester", "Liverpool", "Edinburgh", "Carlisle"];
+const index = cities.indexOf("Liverpool");
+if (index !== -1) {
+  cities.splice(index, 2);
+}
+console.log(cities); // [ "Manchester", "Carlisle" ]
+```
+
+Access every item in the array, leaving you with an array containing the changed items. You can do this using map(). The code below takes an array of numbers and doubles each number:
+```JavaScript
+function double(number) {
+  return number * 2;
+}
+const numbers = [5, 2, 7, 6];
+const doubled = numbers.map(double);
+console.log(doubled); // [ 10, 4, 14, 12 ]
+```
+We give a function to the map(), and map() calls the function once for each item in the array, passing in the item. It then adds the return value from each function call to a new array, and finally returns the new array.
+
+Sometimes you'll want to create a new array containing only the items in the original array that match some test. You can do that using filter(). The code below takes an array of strings and returns an array containing just the strings that are greater than 8 characters long:
+```JavaScript
+function isLong(city) {
+  return city.length > 8;
+}
+const cities = ["London", "Liverpool", "Totnes", "Edinburgh"];
+const longer = cities.filter(isLong);
+console.log(longer); // [ "Liverpool", "Edinburgh" ]
+```
