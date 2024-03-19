@@ -20,24 +20,35 @@
 - `document.body.appendChild(childElement)` - adds a child element to the end of the parent element
 - `element.innerHTML = 'new content'` - changes the inner HTML of an element
 - `element.textContent = 'new content'` - changes the text content of an element (ignores HTML tags)
+- `element.setAttribute('attribute', 'value')` - sets the value of an attribute on the specified element
+- `element.getAttribute('attribute')` - returns the value of the specified attribute on the specified element
 
 ### Event listeners and actions
 
-- `element.onclick = function() { ... }` - assigns a function to be executed when the element is clicked
+- `element.onclick = () => { ... }` - assigns a function to be executed when the element is clicked
 - `element.addEventListener('click', function() { ... })` - assigns a function to be executed when the element is clicked
 - `element.addEventListener('mouseover', function() { ... })` - assigns a function to be executed when the mouse pointer is moved onto the element
 - `element.addEventListener('mouseout', function() { ... })` - assigns a function to be executed when the mouse pointer is moved out of the element
 - `element.addEventListener('change', function() { ... })` - assigns a function to be executed when the value of the element is changed
 - `element.addEventListener('input', function() { ... })` - assigns a function to be executed when the value of the element is changed
 
-
-## User input
-
-- `const content = prompt('message')` - displays a dialog box with a message and an input field for the user to enter text
+## JavaScript functions
 
 ### Nested functions
 
 - `function outerFunction() { function innerFunction() { ... } }` - a function can contain another more specific function
 - `stopPropagation()` - stops the bubbling of an event to parent elements
 
-### Iterations
+### Popups and prompts
+
+- `const content = prompt('message')` - displays a dialog box with a message and an input field for the user to enter text
+- `alert('message')` - displays an alert box with a message
+
+### Storage
+
+- `localStorage.setItem('key', 'value')` - stores data in the web browser's local storage
+- `localStorage.getItem('key')` - retrieves data from the web browser's local storage
+- `localStorage.removeItem('key')` - removes data from the web browser's local storage
+- `localStorage.clear()` - removes all data from the web browser's local storage
+
+We can use the local storage to check conditions (see the Prompt and store user input example in the gallery).
