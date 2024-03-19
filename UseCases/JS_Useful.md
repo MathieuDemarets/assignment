@@ -5,7 +5,7 @@
 ### Accessing HTML elements
 
 - `document.getElementById('id')` - returns the element with the specified id
-- `document.getElementsByClassName('class')` - returns a collection of all elements with the specified classRefused to execute script from 'http://127.0.0.1:5500/UseCases/scripts.js' because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled.
+- `document.getElementsByClassName('class')` - returns a collection of all elements with the specified class.
 - `document.getElementsByTagName('tag')` - returns a collection of all elements with the specified tag
 - `document.querySelector('selector')` - returns the first element that matches the specified selector
 - `document.querySelectorAll('selector')` - returns a collection of all elements that match the specified selector
