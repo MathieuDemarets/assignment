@@ -1,4 +1,6 @@
-# Image changer
+# Basic Scripts
+
+## Image changer
 
 This snippet enables you to replace an image with another one when the user clicks on it and switches back to the original image when the user clicks on it again.
 
@@ -15,7 +17,7 @@ img.onclick = function() {
 };
 ```
 
-# Prompt and store user input
+## Prompt and store user input
 
 This snippet prompts the user to enter their name and stores it in a variable. We also add an initialization code underneath the function definition to display the user's name in the `h1` element.
 
@@ -33,7 +35,7 @@ if(!localStorage.getItem('name')) {
 }
 ```
 
-# Recursive prompt to avoid null input
+## Recursive prompt to avoid null input
 
 This snippet prompts the user to enter their name and stores it in a variable. If the user enters a null value, the prompt will appear again.
 
