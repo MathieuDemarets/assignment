@@ -201,3 +201,98 @@ function createDropdown(options, selected) {
 }
 ```
 
+## Show a pressed key
+
+This snippet displays the key that the user pressed in the `h1` element.
+
+```javascript
+document.addEventListener('keydown', (event) => {
+  document.querySelector('h1').textContent = `You pressed the ${event.key} key`;
+});
+```
+
+# Multiple Functions Scripts
+
+## Guess the number
+
+This snippet generates a random number between 1 and 100 and prompts the user to guess the number. It will tell the user if the number is too high or too low and will keep prompting the user until they guess the correct number.
+
+```javascript
+let randomNumber = Math.floor(Math.random() * 100) + 1; 
+
+const guesses = document.querySelector(".guesses"); 
+const lastResult = document.querySelector(".lastResult"); 
+const lowOrHi = document.querySelector(".lowOrHi");
+const nturns = document.querySelector(".turns"); 
+
+const guessSubmit = document.querySelector(".guessSubmit"); 
+const guessField = document.querySelector(".guessField"); 
+
+let guessCount = 1; 
+let resetButton;
+
+function checkGuess() { 
+    const userGuess = Number(guessField.value); 
+    if (guessCount === 1) { 
+        guesses.textContent = "Previous guesses:"; 
+    } 
+    guesses.textContent = `${guesses.textContent} ${userGuess}`; 
+
+    nturns.textContent = `Turns left: ${10 - guessCount}`;
+
+    if (userGuess === randomNumber) { 
+        lastResult.textContent = "Congratulations! You got it right!"; 
+        lastResult.style.backgroundColor = "green"; 
+        lowOrHi.textContent = ""; 
+        setGameOver(); 
+    } else if (guessCount === 10) { 
+        lastResult.textContent = "!!!GAME OVER!!!"; 
+        lowOrHi.textContent = ""; 
+        setGameOver(); 
+    } else { 
+        lastResult.textContent = "Wrong!"; 
+        lastResult.style.backgroundColor = "red"; 
+        if (userGuess < randomNumber) { 
+            lowOrHi.textContent = "Last guess was too low!"; 
+        } else if (userGuess > randomNumber) { 
+            lowOrHi.textContent = "Last guess was too high!"; 
+        } 
+    }
+
+    guessCount++;
+    guessField.value = "";
+    guessField.focus();
+}
+
+guessSubmit.addEventListener("click", checkGuess);
+
+function setGameOver() {
+    guessField.disabled = true;
+    guessSubmit.disabled = true;
+    resetButton = document.createElement("button");
+    resetButton.textContent = "Start new game";
+    document.body.appendChild(resetButton);
+    resetButton.addEventListener("click", resetGame);
+}
+
+function resetGame() {
+    guessCount = 1;
+
+    const resetParas = document.querySelectorAll("p.resultParas");
+    for (let i = 0; i < resetParas.length; i++) {
+        resetParas[i].textContent = "";
+    }
+
+    resetButton.parentNode.removeChild(resetButton);
+
+    guessField.disabled = false;
+    guessSubmit.disabled = false;
+    guessField.value = "";
+    guessField.focus();
+
+    lastResult.style.backgroundColor = "white";
+
+    randomNumber = Math.floor(Math.random() * 100) + 1;
+}
+```
+
