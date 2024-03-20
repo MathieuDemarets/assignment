@@ -1,0 +1,29 @@
+<HTML>
+    <BODY>
+        <P id="timer"></P>
+        <BUTTON id="reset">Reset</BUTTON>
+        <SCRIPT>
+            let timeElapsed = 0;
+            const timer = document.getElementById('timer');
+
+            function updateTimer(){
+                setInterval(displayTime, 1000);
+            }
+
+            function displayTime(){
+                timeElapsed++;
+                timer.innerHTML = timeElapsed;
+            }
+
+            document.getElementById('reset').addEventListener(
+                "click",
+                () => {
+                    timeElapsed = 0;
+                    timer.innerHTML = timeElapsed;
+                }
+            )
+
+            window.addEventListener("load", updateTimer)
+        </SCRIPT>
+    </BODY>
+</HTML>
